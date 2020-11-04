@@ -1,0 +1,1 @@
+web: gunicorn Defence_Blogs.wsgi --log-file -
