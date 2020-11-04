@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <style>
+    .image{
+        padding: 40px 25%;
+    }
+    </style>
+    <div class="container marketing">
+        <div class="row featurette">
+            <div class="head">
+                <h2 class="featurette-heading">{{ data.blog_title }} <span class="text-muted"></span></h2>
+                <span>{{ data.published_time }} by {{ data.author }}</span>
+                <hr>
+                <p class="lead">{{ data.body|linebreaksbr }}</p>
+            </div>
+            <div class="image">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{{ data.image.url }}">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

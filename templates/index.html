@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% block body %}
+    <style>
+    .read-more{
+        text-decoration-style: -moz-none;
+    }
+    .read-more:hover{
+        text-decoration: none;
+        border-bottom: darkblue 3px solid;
+        transition: 0.1s;
+    }
+    </style>
+
+  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 font-italic">{{ sample_post.blog_title }}</h1>
+      <p class="blog-post-meta">{{ sample_post.published_time }} by <a href="{% url 'contact' %}">{{ sample_post.author }}</a></p>
+      <p class="lead my-3">{{ sample_post.intro }}</p>
+      <p class="lead mb-0"><a href="{% url 'post' %}?post={{ sample_post.id }}" class="text-white font-weight-bold">Continue reading...</a></p>
+    </div>
+  </div>
+
+
+
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8 blog-main">
+
+      <h3 class="pb-4 mb-4 font-italic border-bottom">
+        Blogs
+      </h3>
+      {% for x in data %}
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{ x.blog_title }}</h2>
+        <p class="blog-post-meta">{{ x.published_time }} by <a href="{% url 'contact' %}">{{ x.author }}</a></p>
+
+        <p>{{ x.intro }}</p>
+        <a class="read-more" href="{% url 'post' %}?post={{ x.id }}">Continue reading...</a>
+      </div><!-- /.blog-post -->
+      {% endfor %}
+
+      <nav class="blog-pagination" style="float: right">
+        <a class="btn btn-outline-secondary" href="{% url 'home' %}?pno=view_all">View More...</a>
+      </nav>
+
+    </div><!-- /.blog-main -->
+
+    <aside class="col-md-4 blog-sidebar">
+      <div class="p-4 mb-3 bg-light rounded">
+        <h4 class="font-italic">About</h4>
+        <p class="mb-0">I'm <em>Rakesh Roy</em>,<br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur culpa cum, dolores earum enim eos error excepturi fugiat id quas quos ratione totam? Ad amet consequuntur est ipsa quos!</p>
+      </div>
+
+      <div class="p-4">
+        <h4 class="font-italic">Archives</h4>
+        <ol class="list-unstyled mb-0">
+          <li><a href="#">March 2014</a></li>
+          <li><a href="#">February 2014</a></li>
+          <li><a href="#">January 2014</a></li>
+          <li><a href="#">December 2013</a></li>
+          <li><a href="#">November 2013</a></li>
+          <li><a href="#">October 2013</a></li>
+          <li><a href="#">September 2013</a></li>
+          <li><a href="#">August 2013</a></li>
+          <li><a href="#">July 2013</a></li>
+          <li><a href="#">June 2013</a></li>
+          <li><a href="#">May 2013</a></li>
+          <li><a href="#">April 2013</a></li>
+        </ol>
+      </div>
+
+      <div class="p-4">
+        <h4 class="font-italic">Elsewhere</h4>
+        <ol class="list-unstyled">
+          <li><a href="https://github.com/Rakesh-roy" target="_blank">GitHub</a></li>
+          <li><a href="https://github.com/Rakesh-roy" target="_blank">Twitter</a></li>
+          <li><a href="https://github.com/Rakesh-roy" target="_blank">Instagram</a></li>
+        </ol>
+      </div>
+    </aside><!-- /.blog-sidebar -->
+
+
+
+
+
+
+    <div class="container marketing">
+    <h3 class="pb-4 mb-4 font-italic border-bottom">
+        Important Blogs
+      </h3>
+    <div class="row mb-2">
+
+    <style>
+        .footer-card:hover{
+            background-color: #d6d6d6;
+            transition: 1s;
+        }
+    </style>
+        {% for x in footer %}
+            {% if x.blog_title == 'CHIEF OF THE AIR STAFF' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+
+
+            {% if x.blog_title == 'Marshal of the Indian Air Force' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+
+
+            {% if x.blog_title == 'Chief of the Army Staff (India)' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+
+
+            {% if x.blog_title == 'Chief of the Naval Staff (India)' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+        {% endfor %}
+    </div><!-- /.row -->
+
+    </div>
+
+  </div><!-- /.row -->
+</main><!-- /.container -->
+
+{% endblock %}

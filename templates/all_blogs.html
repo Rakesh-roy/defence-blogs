@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block body %}
+    <style>
+    .read-more{
+        text-decoration-style: -moz-none;
+    }
+    .read-more:hover{
+        text-decoration: none;
+        border-bottom: darkblue 3px solid;
+        transition: 0.1s;
+    }
+    </style>
+
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8 blog-main" style="padding-top: 40px">
+      {% for x in data %}
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{ x.blog_title }}</h2>
+        <p class="blog-post-meta">{{ x.published_time }} by <a href="{% url 'contact' %}">{{ x.author }}</a></p>
+
+        <p>{{ x.intro }}</p>
+        <a class="read-more" href="{% url 'post' %}?post={{ x.id }}">Continue reading...</a>
+      </div><!-- /.blog-post -->
+      {% endfor %}
+
+    </div><!-- /.blog-main -->
+
+
+
+    <style>
+        .categories-link{
+            text-decoration: none;
+            color: darkblue;
+        }
+    </style>
+    <aside class="col-md-4 blog-sidebar">
+        <div class="card">
+            <div class="p-4">
+                <h4 class="font-italic">Categories</h4>
+                <hr>
+                <ol class="list-unstyled mb-0">
+                    <li><a class="categories-link" href="{% url 'blogs' %}?type=Air Force">INDIAN AIR FORCE</a></li>
+                    <li><a class="categories-link" href="{% url 'blogs' %}?type=Army">INDIAN ARMY</a></li>
+                    <li><a class="categories-link" href="{% url 'blogs' %}?type=Navy">INDIAN NAVY</a></li>
+                    <li><a class="categories-link" href="{% url 'blogs' %}?type=Afcat">AFCAT</a></li>
+                    <li><a class="categories-link" href="{% url 'blogs' %}?type=CDS">CDS</a></li>
+                    <li><a class="categories-link" href="{% url 'blogs' %}?type=NDA">NDA</a></li>
+                    <li><a class="categories-link" href="{% url 'blogs' %}?type=NCC">NCC</a></li>
+                </ol>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <div class="container marketing">
+    <h3 class="pb-4 mb-4 font-italic border-bottom">
+        Important Blogs
+      </h3>
+    <div class="row mb-2">
+
+    <style>
+        .footer-card:hover{
+            background-color: #d6d6d6;
+            transition: 1s;
+        }
+    </style>
+        {% for x in data %}
+            {% if x.blog_title == 'CHIEF OF THE AIR STAFF' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+
+
+            {% if x.blog_title == 'Marshal of the Indian Air Force' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+
+
+            {% if x.blog_title == 'Chief of the Army Staff (India)' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+
+
+            {% if x.blog_title == 'Chief of the Naval Staff (India)' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+        {% endfor %}
+    </div><!-- /.row -->
+
+    </div>
+
+  </div><!-- /.row -->
+</main><!-- /.container -->
+
+{% endblock %}

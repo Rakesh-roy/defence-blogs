@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+    <style>
+
+    </style>
+    <br>
+    <div class="container marketing">
+
+    <!-- START THE FEATURETTES -->
+    {% if data %}
+
+    {% for blogs in data %}
+        {% if forloop.counter|divisibleby:"2" %}
+
+
+            <div class="row featurette">
+              <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">{{ blogs.blog_title }} <span class="text-muted">...</span></h2>
+                <span>{{ blogs.published_time }} by {{ blogs.author }}</span>
+                <p class="lead">{{ blogs.intro|capfirst }}</p>
+                <a href="{% url 'post' %}?post={{ blogs.id }}">Continue reading...</a>
+              </div>
+              <div class="col-md-5">
+                <img class="img-fluid" style="width: 500px; height: 500px" src="{{ blogs.image.url }}">
+              </div>
+            </div>
+            <hr class="">
+        {% else %}
+
+
+
+            <div class="row featurette">
+              <div class="col-md-7">
+                <h2 class="featurette-heading">{{ blogs.blog_title }} <span class="text-muted">...</span></h2>
+                <p class="lead">{{ blogs.intro|capfirst }}</p>
+                <a href="{% url 'post' %}?post={{ blogs.id }}">Continue reading...</a>
+              </div>
+              <div class="col-md-5">
+                <img class="img-fluid" style="width: 500px; height: 420px" src="{{ blogs.image.url }}">
+              </div>
+
+            </div>
+            <hr class="">
+        {% endif %}
+
+    {% endfor %}
+
+
+    <!--Pagination Section-->
+    <nav aria-label="Page navigation example" style="">
+          <ul class="pagination justify-content-center">
+              {% if data.has_previous %}
+                  <li class="page-item">
+                      <a class="page-link" href="{% url 'blogs' %}?pno={{ data.previous_page_number }}&type={{ type }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                  </li>
+              {% else %}
+                  <li class="page-item disabled">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                  </li>
+              {% endif %}
+
+              {% for x in data.paginator.page_range %}
+                  <li class="page-item"><a class="page-link" href="{% url 'blogs' %}?pno={{ x }}&type={{ type }}">{{ x }}</a></li>
+              {% endfor %}
+
+            {% if products.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="{% url 'blogs' %}?pno={{ data.next_page_number }}&type={{ type }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+            {% endif %}
+          </ul>
+    </nav>
+    {% else %}
+        <div class="alert alert-danger text-center" role="alert" style="margin-top: 20px">
+            No blogs Found !
+        </div>
+    {% endif %}
+    <hr class="featurette-divider">
+    <!--End Pagination Section-->
+
+
+
+
+    {# Footer cards   #}
+    <div class="container marketing">
+    <h3 class="pb-4 mb-4 font-italic border-bottom">
+        Important Blogs
+      </h3>
+    <div class="row mb-2">
+
+    <style>
+        .footer-card:hover{
+            background-color: #d6d6d6;
+            transition: 1s;
+        }
+    </style>
+        {% for x in footer %}
+            {% if x.blog_title == 'CHIEF OF THE AIR STAFF' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+
+
+            {% if x.blog_title == 'Marshal of the Indian Air Force' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+
+
+            {% if x.blog_title == 'Chief of the Army Staff (India)' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+
+
+            {% if x.blog_title == 'Chief of the Naval Staff (India)' %}
+              <div class="col-lg-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-360 position-relative footer-card">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ x.type }}</strong>
+                      <h3 class="mb-0">{{ x.blog_title }}</h3>
+                      <div class="mb-1 text-muted">{{ x.published_time.date}}</div>
+                      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                      <a href="{% url 'post' %}?post={{ x.id }}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="180" height="210" src="{{ x.image.url }}">
+                    </div>
+                  </div>
+              </div><!-- /.col-lg-4 -->
+            {% endif %}
+        {% endfor %}
+    </div><!-- /.row -->
+
+    </div>
+
+    <!-- Three columns of text below the carousel -->
+{#    <div class="row">#}
+{#      <div class="col-lg-4">#}
+{#        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>#}
+{#        <h2>Heading</h2>#}
+{#        <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>#}
+{#        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>#}
+{#      </div><!-- /.col-lg-4 -->#}
+{#      <div class="col-lg-4">#}
+{#        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>#}
+{#        <h2>Heading</h2>#}
+{#        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>#}
+{#        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>#}
+{#      </div><!-- /.col-lg-4 -->#}
+{#      <div class="col-lg-4">#}
+{#        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>#}
+{#        <h2>Heading</h2>#}
+{#        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>#}
+{#        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>#}
+{#      </div><!-- /.col-lg-4 -->#}
+{#    </div><!-- /.row -->#}
+
+    </div>
+
+
+
+{% endblock %}
