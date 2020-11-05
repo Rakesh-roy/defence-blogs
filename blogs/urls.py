@@ -5,6 +5,11 @@ from django.views.generic import TemplateView
 from Defence_Blogs import settings
 from blogs import views
 
+
+admin.site.site_header = 'Defence Blogs'
+admin.site.site_title= 'Defence Blogs Admin'
+admin.site.index_title = 'Welcome to Defence Blogs | Admin'
+
 urlpatterns = [
     path('', views.home, name='home'),
     path('Blogs/', views.blogs, name='blogs'),
@@ -15,6 +20,8 @@ urlpatterns = [
 
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
